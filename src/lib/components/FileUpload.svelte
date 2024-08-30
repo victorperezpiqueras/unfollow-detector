@@ -17,7 +17,7 @@
 	};
 </script>
 
-<div class="file is-centered is-boxed is-success has-name">
+<div class="file is-centered is-boxed is-link has-name">
 	<label class="file-label">
 		<input class="file-input" type="file" accept=".zip" on:change={handleFileChange} />
 		<span class="file-cta">
