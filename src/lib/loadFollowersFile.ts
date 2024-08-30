@@ -7,20 +7,20 @@ export class FollowersFileWrongFormatError extends Error {
 	}
 }
 
-type UserData = {
+export type User = {
 	href: string; // url profile
 	timestamp: number;
 	value: string; // nickname
 };
 
-export type User = {
+type RawUser = {
 	title: string; // empty
 	media_list_data: []; // empty
-	string_list_data: UserData[]; // always contains only 1 user
+	string_list_data: User[]; // always contains only 1 user
 };
 
 type Following = {
-	relationships_following: User[];
+	relationships_following: RawUser[];
 };
 
 const FOLLOWERS_FOLDER = 'connections/followers_and_following';
@@ -33,8 +33,8 @@ export async function loadFollowersFile(file: File | undefined): Promise<{
 		throw new FollowersFileWrongFormatError('File is undefined');
 	}
 	try {
-		let followers: User[];
-		let following: Following;
+		let followersData: RawUser[];
+		let followingData: Following;
 		const zip = await JSZip.loadAsync(file);
 
 		// Extract followers.json
@@ -43,8 +43,8 @@ export async function loadFollowersFile(file: File | undefined): Promise<{
 			throw new FollowersFileWrongFormatError('followers.json not found in the zip file');
 
 		const followersContent = await followersFile.async('string');
-		followers = JSON.parse(followersContent);
-		console.log(followers);
+		followersData = JSON.parse(followersContent);
+		console.log(followersData);
 
 		// Extract followed.json
 		const followedFile = zip.file(`${FOLLOWERS_FOLDER}/following.json`);
@@ -52,12 +52,17 @@ export async function loadFollowersFile(file: File | undefined): Promise<{
 			throw new FollowersFileWrongFormatError('followed.json not found in the zip file');
 
 		const followedContent = await followedFile.async('string');
-		following = JSON.parse(followedContent);
-		console.log(following);
+		followingData = JSON.parse(followedContent);
+		console.log(followingData);
+
+		const followers: User[] = followersData.map((rawUser) => rawUser.string_list_data[0]);
+		const following: User[] = followingData.relationships_following.map(
+			(rawUser) => rawUser.string_list_data[0]
+		);
 
 		return {
 			followers: followers,
-			following: following.relationships_following
+			following: following
 		};
 	} catch (error) {
 		throw new FollowersFileWrongFormatError('There was an error reading the zip file');

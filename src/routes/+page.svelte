@@ -3,6 +3,7 @@
 	import FileUpload from '$lib/components/FileUpload.svelte';
 	import TutorialModal from '$lib/components/TutorialModal.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import UsersList from '$lib/components/UsersList.svelte';
 
 	/* MODAL LOGIC */
 	let showModal = false;
@@ -15,11 +16,11 @@
 
 	/* UPLOAD FILE LOGIC */
 	let followers: User[];
-	let followed: User[];
+	let following: User[];
 	function handleUploadComplete(event: CustomEvent<{ followers: User[]; following: User[] }>) {
 		followers = event.detail.followers;
-		followed = event.detail.following;
-		console.log('parent', followed, followers);
+		following = event.detail.following;
+		console.log('parent', following, followers);
 	}
 </script>
 
@@ -49,8 +50,12 @@
 		<div class="button-row"></div>
 	</div>
 </section>
-<main class="container p-6 is-flex is-flex-direction-column"></main>
 
+{#if followers != null && following != null}
+	<section class="m-6">
+		<UsersList {followers} {following} />
+	</section>
+{/if}
 <TutorialModal {showModal} onClose={handleCloseModal} />
 
 <Footer />
