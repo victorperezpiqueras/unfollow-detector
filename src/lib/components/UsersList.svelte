@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { User } from '$lib/loadFollowersFile';
+	import type { User } from '$lib/shared/loadFollowersFile';
 	import UserCard from './UserCard.svelte';
 
 	let activeTab = 'followingThatDontFollowYou';
@@ -35,7 +35,7 @@
 	<ul>
 		{#each tabs as { id, label, icon }}
 			<li class={activeTab === id ? 'is-active' : ''}>
-				<a on:click={() => setActiveTab(id)}>
+				<a on:click={() => setActiveTab(id)} data-testid={id}>
 					<span class="icon is-small">
 						<i class={icon} aria-hidden="true"></i>
 					</span>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { FollowersFileWrongFormatError, loadFollowersFile } from '$lib/loadFollowersFile';
+	import { FollowersFileWrongFormatError, loadFollowersFile } from '$lib/shared/loadFollowersFile';
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();
@@ -9,7 +9,6 @@
 		const file = input?.files?.[0];
 		try {
 			const { followers, following } = await loadFollowersFile(file);
-			console.log({ followers, following });
 			dispatch('uploadComplete', { followers, following });
 		} catch (error) {
 			if (error instanceof FollowersFileWrongFormatError) alert(error.message);
