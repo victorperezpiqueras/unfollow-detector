@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type User } from '$lib/shared/loadFollowersFile';
+	import { type User } from '$lib/shared/User';
 	import FileUpload from '$lib/components/FileUpload.svelte';
 	import TutorialModal from '$lib/components/TutorialModal.svelte';
 	import Footer from '$lib/components/Footer.svelte';

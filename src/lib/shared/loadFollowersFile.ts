@@ -1,17 +1,11 @@
 import JSZip from 'jszip';
+import type { User } from './User';
 
 export class FollowersFileWrongFormatError extends Error {
 	constructor(message: string) {
 		super(message);
-		this.name = this.constructor.name;
 	}
 }
-
-export type User = {
-	href: string; // url profile
-	timestamp: number;
-	value: string; // nickname
-};
 
 type RawUser = {
 	title: string; // empty
@@ -39,12 +33,12 @@ export async function loadFollowersFile(file: File | undefined): Promise<{
 
 		// Extract followers.json
 		const followersFile = zip.file(`${FOLLOWERS_FOLDER}/followers_1.json`);
+		console.log(followersFile, 'asdasdas');
 		if (!followersFile)
 			throw new FollowersFileWrongFormatError('followers.json not found in the zip file');
 
 		const followersContent = await followersFile.async('string');
 		followersData = JSON.parse(followersContent);
-		console.log(followersData);
 
 		// Extract followed.json
 		const followedFile = zip.file(`${FOLLOWERS_FOLDER}/following.json`);
@@ -53,7 +47,6 @@ export async function loadFollowersFile(file: File | undefined): Promise<{
 
 		const followedContent = await followedFile.async('string');
 		followingData = JSON.parse(followedContent);
-		console.log(followingData);
 
 		const followers: User[] = followersData.map((rawUser) => rawUser.string_list_data[0]);
 		const following: User[] = followingData.relationships_following.map(
@@ -65,6 +58,7 @@ export async function loadFollowersFile(file: File | undefined): Promise<{
 			following: following
 		};
 	} catch (error) {
+		console.log(error);
 		throw new FollowersFileWrongFormatError('There was an error reading the zip file');
 	}
 }

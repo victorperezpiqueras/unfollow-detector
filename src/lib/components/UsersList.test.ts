@@ -1,12 +1,7 @@
 import { render, fireEvent, screen } from '@testing-library/svelte';
 import { describe, it, expect, vi } from 'vitest';
 import UsersList from './UsersList.svelte';
-import type { User } from '$lib/shared/loadFollowersFile';
-
-// Mock UserCard component
-/* vi.mock('$lib/components/UserCard.svelte', () => ({
-	default: () => '<div>UserCard</div>'
-})); */
+import type { User } from '$lib/shared/User';
 
 describe('UsersList Component', () => {
 	const followers: User[] = [

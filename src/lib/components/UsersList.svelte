@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { User } from '$lib/shared/loadFollowersFile';
-	import UserCard from './UserCard.svelte';
+	import type { User } from '$lib/shared/User';
+	import UserCard from '$lib/components/UserCard.svelte';
 
 	let activeTab = 'followingThatDontFollowYou';
 
