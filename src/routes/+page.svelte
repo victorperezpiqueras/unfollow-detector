@@ -20,7 +20,6 @@
 	function handleUploadComplete(event: CustomEvent<{ followers: User[]; following: User[] }>) {
 		followers = event.detail.followers;
 		following = event.detail.following;
-		console.log('parent', following, followers);
 	}
 </script>
 
@@ -52,7 +51,7 @@
 </section>
 
 {#if followers != null && following != null}
-	<section class="m-6">
+	<section class="m-6" data-testid="users-list">
 		<UsersList {followers} {following} />
 	</section>
 {/if}

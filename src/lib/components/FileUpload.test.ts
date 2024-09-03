@@ -57,9 +57,7 @@ describe('FileUpload Component', () => {
 		});
 
 		// Mock window.alert
-		const alertMock = vi.spyOn(window, 'alert').mockImplementation((data) => {
-			console.log(data);
-		});
+		const alertMock = vi.spyOn(window, 'alert').mockImplementation((data) => {});
 
 		// Render the component
 		const { getByLabelText } = render(FileUpload);

@@ -16,9 +16,15 @@
 	};
 </script>
 
-<div class="file is-centered is-boxed is-link has-name">
+<div class="file is-centered is-boxed is-link has-name" data-testid="upload-button">
 	<label class="file-label">
-		<input class="file-input" type="file" accept=".zip" on:change={handleFileChange} />
+		<input
+			class="file-input"
+			type="file"
+			accept=".zip"
+			on:change={handleFileChange}
+			data-testid="file-input"
+		/>
 		<span class="file-cta">
 			<span class="file-icon">
 				<span class="has-text-white">

@@ -33,7 +33,6 @@ export async function loadFollowersFile(file: File | undefined): Promise<{
 
 		// Extract followers.json
 		const followersFile = zip.file(`${FOLLOWERS_FOLDER}/followers_1.json`);
-		console.log(followersFile, 'asdasdas');
 		if (!followersFile)
 			throw new FollowersFileWrongFormatError('followers.json not found in the zip file');
 
@@ -58,7 +57,6 @@ export async function loadFollowersFile(file: File | undefined): Promise<{
 			following: following
 		};
 	} catch (error) {
-		console.log(error);
 		throw new FollowersFileWrongFormatError('There was an error reading the zip file');
 	}
 }
