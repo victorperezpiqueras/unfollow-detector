@@ -11,7 +11,8 @@
 			const { followers, following } = await loadFollowersFile(file);
 			dispatch('uploadComplete', { followers, following });
 		} catch (error) {
-			if (error instanceof FollowersFileWrongFormatError) alert(error.message);
+			if (error instanceof FollowersFileWrongFormatError)
+				alert('El fichero no tiene el formato correcto. Revisa su estructura.');
 		}
 	};
 </script>

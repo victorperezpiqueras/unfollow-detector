@@ -50,7 +50,7 @@ describe('FileUpload Component', () => {
 
 	it('alerts with error message when an invalid file is uploaded', async () => {
 		// Arrange
-		const mockErrorMessage = 'There was an error reading the zip file';
+		const mockErrorMessage = 'El fichero no tiene el formato correcto. Revisa su estructura.';
 
 		(loadFollowersFile as any).mockImplementation(() => {
 			throw new FollowersFileWrongFormatError(mockErrorMessage);
@@ -71,7 +71,9 @@ describe('FileUpload Component', () => {
 
 		// Assert
 		expect(loadFollowersFile).toHaveBeenCalledWith(file);
-		expect(alertMock).toBeCalled(); // TODO check how to fix message
+		expect(alertMock).toBeCalledWith(
+			'El fichero no tiene el formato correcto. Revisa su estructura.'
+		); // TODO check how to fix message
 
 		// Clean up the mock
 		alertMock.mockRestore();

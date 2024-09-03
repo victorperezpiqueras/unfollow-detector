@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 import { Page } from '@playwright/test';
 
 // this file contains 2 followers and 2 following, 1 of which is shared by both
-const INSTAGRAM_EXPORTED_DATA = './e2e/fixtures/instagram_export_followers.zip';
+const INSTAGRAM_EXPORTED_DATA = './e2e/fixtures/instagram_exported_data.zip';
 
 async function uploadFile(page: Page, filePath: string) {
 	await page.locator('[data-testid="upload-button"]').click();
@@ -59,5 +59,19 @@ test.describe('File upload and UsersList display', () => {
 		expect(newPage.url()).toBe('https://www.instagram.com/userThatDoesntFollowYou/');
 
 		await newPage.close();
+	});
+
+	test('should show an alert when an invalid file is uploaded', async ({ page }) => {
+		await page.goto('/');
+
+		await uploadFile(page, './e2e/fixtures/instagram_invalid_exported_data.zip');
+
+		// Listen for the dialog (alert) and handle it
+		const dialog = await page.waitForEvent('dialog');
+
+		// Assert the alert's message
+		expect(dialog.message()).toBe('El fichero no tiene el formato correcto. Revisa su estructura.');
+
+		await dialog.accept();
 	});
 });
