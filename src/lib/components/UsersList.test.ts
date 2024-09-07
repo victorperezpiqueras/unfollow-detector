@@ -18,7 +18,7 @@ describe('UsersList Component', () => {
 		// TODO this shouldnt be needed as UserCard should be mocked
 		vi.spyOn(window, 'matchMedia').mockImplementation((query) => {
 			return {
-				matches: query === '(max-width: 1600px)', // Mock a PC viewport
+				matches: query === '(max-width: 1600px)', // Mock a non-mobile viewport
 				media: query,
 				onchange: null,
 				addListener: vi.fn(), // Deprecated

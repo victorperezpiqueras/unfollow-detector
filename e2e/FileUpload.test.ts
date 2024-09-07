@@ -43,7 +43,7 @@ test.describe('File upload and UsersList display', () => {
 		await expect(page.getByTestId('users-list')).toContainText('@userThatYouDontFollow');
 	});
 
-	test('should open new tab when clicking on a user', async ({ page }) => {
+	test('should open new tab when clicking on a user in non-mobile devices', async ({ page }) => {
 		await page.goto('/');
 
 		// Upload the file
@@ -59,6 +59,20 @@ test.describe('File upload and UsersList display', () => {
 		expect(newPage.url()).toBe('https://www.instagram.com/userThatDoesntFollowYou/');
 
 		await newPage.close();
+	});
+
+	test('should open instagram app when clicking on a user in mobile devices', async ({ page }) => {
+		await page.goto('/');
+		await page.setViewportSize({ width: 320, height: 480 });
+
+		// Upload the file
+		await uploadFile(page, INSTAGRAM_EXPORTED_DATA);
+
+		const userLink = page.locator('a[href^="instagram://"]'); // Locator for links with Instagram deep link
+		const href = await userLink.getAttribute('href');
+
+		// Check that the href is the Instagram deep link
+		expect(href).toBe('instagram://user?username=userThatDoesntFollowYou');
 	});
 
 	test('should show an alert when an invalid file is uploaded', async ({ page }) => {
