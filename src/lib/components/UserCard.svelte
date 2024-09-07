@@ -3,9 +3,12 @@
 		href: string;
 		value: string;
 	};
+
+	const isMobile = typeof window !== 'undefined' && window.matchMedia('(width <= 640px)').matches;
+	const finalHref = isMobile ? `instagram://user?username=${user.value}` : user.href;
 </script>
 
-<a href={user.href} target="_blank" rel="noopener noreferrer">
+<a href={finalHref} target="_blank" rel="noopener noreferrer">
 	<div class="card mb-4">
 		<header class="card-header">
 			<p class="card-header-title is-size-5">

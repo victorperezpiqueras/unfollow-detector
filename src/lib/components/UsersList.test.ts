@@ -1,5 +1,5 @@
 import { render, fireEvent, screen } from '@testing-library/svelte';
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import UsersList from './UsersList.svelte';
 import type { User } from '$lib/shared/User';
 
@@ -14,10 +14,27 @@ describe('UsersList Component', () => {
 		{ href: 'mutual', timestamp: 0, value: 'mutual' }
 	];
 
+	beforeEach(() => {
+		// TODO this shouldnt be needed as UserCard should be mocked
+		vi.spyOn(window, 'matchMedia').mockImplementation((query) => {
+			return {
+				matches: query === '(max-width: 1600px)', // Mock a PC viewport
+				media: query,
+				onchange: null,
+				addListener: vi.fn(), // Deprecated
+				removeListener: vi.fn(), // Deprecated
+				addEventListener: vi.fn(),
+				removeEventListener: vi.fn(),
+				dispatchEvent: vi.fn()
+			};
+		});
+	});
+
 	it('should render following that do not follow you', async () => {
 		const { getByText, queryByText } = render(UsersList, {
 			props: { followers, following }
 		});
+
 		const followingThatDontFollowYou = screen.getByTestId('followingThatDontFollowYou');
 		await fireEvent.click(followingThatDontFollowYou);
 
