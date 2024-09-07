@@ -1,4 +1,6 @@
-# create-svelte
+# Unfollow Detector
+
+[![CI/CD](https://github.com/unfollow-detector/unfollow-detector/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/unfollow-detector/unfollow-detector/actions/workflows/ci-cd.yml)
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
