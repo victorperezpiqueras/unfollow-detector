@@ -58,22 +58,7 @@
 	{/each}
 </TabGroup>
 
-<!-- <div class="tabs is-toggle is-fullwidth">
-	<ul>
-		{#each tabs as { id, label, icon }}
-			<li class={activeTab === id ? 'is-active' : ''}>
-				<a on:click={() => setActiveTab(id)} data-testid={id}>
-					<span class="icon is-small">
-						<i class={icon} aria-hidden="true"></i>
-					</span>
-					<span>{label}</span>
-				</a>
-			</li>
-		{/each}
-	</ul>
-</div> -->
-
-<div>
+<div class="h-4/6 overflow-y-auto">
 	{#if activeTab === 'followingThatDontFollowYou'}
 		{#each followingThatDontFollowYou as user}
 			<UserCard {user} />

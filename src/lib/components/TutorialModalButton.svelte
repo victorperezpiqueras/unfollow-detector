@@ -13,6 +13,10 @@
 	const modalStore = getModalStore();
 </script>
 
-<button type="button" class="btn-icon variant-filled" on:click={() => modalStore.trigger(modal)}>
+<button
+	type="button"
+	class="btn-icon btn-icon-sm variant-filled"
+	on:click={() => modalStore.trigger(modal)}
+>
 	<span class="fa-solid fa-question text-2xl"></span>
 </button>
