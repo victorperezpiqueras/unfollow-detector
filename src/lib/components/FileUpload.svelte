@@ -41,5 +41,5 @@
 
 <FileButton name="files" button="btn variant-soft-tertiary" on:change={handleFileChange}>
 	<i class="fa-solid fa-upload"></i>
-	<span> Sube tu fichero </span>
+	<span>Sube tu fichero</span>
 </FileButton>

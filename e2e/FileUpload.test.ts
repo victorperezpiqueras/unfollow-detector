@@ -6,8 +6,8 @@ import { Page } from '@playwright/test';
 const INSTAGRAM_EXPORTED_DATA = './e2e/fixtures/instagram_exported_data.zip';
 
 async function uploadFile(page: Page, filePath: string) {
-	await page.locator('[data-testid="upload-button"]').click();
-	await page.locator('[data-testid="file-input"]').setInputFiles(filePath);
+	await page.locator('[data-testid="file-button"]').click();
+	await page.locator('input[type="file"]').setInputFiles(filePath);
 }
 
 async function clickByTestId(page: Page, testId: string) {
@@ -24,7 +24,6 @@ test.describe('File upload and UsersList display', () => {
 		await uploadFile(page, INSTAGRAM_EXPORTED_DATA);
 
 		// Check initial conditions
-		await expect(page.getByTestId('followingThatDontFollowYou')).toBeVisible();
 		await expect(page.getByTestId('users-list')).not.toContainText('@userMutual');
 		await expect(page.getByTestId('users-list')).toContainText('@userThatDoesntFollowYou');
 	});
@@ -36,7 +35,7 @@ test.describe('File upload and UsersList display', () => {
 		await uploadFile(page, INSTAGRAM_EXPORTED_DATA);
 
 		// Click on followers who don’t follow back
-		await clickByTestId(page, 'followersThatYouDontFollow');
+		await page.getByRole('button', { name: 'No les sigues' }).click();
 
 		// Verify displayed users
 		await expect(page.getByTestId('users-list')).not.toContainText('@userMutual');

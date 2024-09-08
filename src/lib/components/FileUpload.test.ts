@@ -26,18 +26,21 @@ describe('FileUpload Component', () => {
 		});
 
 		// Render the component
-		const { getByLabelText, component } = render(FileUpload);
+		const { getByTestId, component } = render(FileUpload);
 
 		// Listen for the 'uploadComplete' event
 		const uploadComplete = vi.fn();
 		component.$on('uploadComplete', uploadComplete);
 
 		// Act
-		const input = getByLabelText('Sube tu fichero') as HTMLInputElement;
+		const button = getByTestId('file-button').querySelector(
+			'input[type="file"]'
+		) as HTMLInputElement;
+		expect(button).toBeInTheDocument();
 		const file = new File(['content'], 'followers.zip', { type: 'application/zip' });
 
 		// Trigger file input change event
-		await fireEvent.change(input, { target: { files: [file] } });
+		await fireEvent.change(button, { target: { files: [file] } });
 
 		// Assert
 		expect(loadFollowersFile).toHaveBeenCalledWith(file);
@@ -60,14 +63,17 @@ describe('FileUpload Component', () => {
 		const alertMock = vi.spyOn(window, 'alert').mockImplementation((data) => {});
 
 		// Render the component
-		const { getByLabelText } = render(FileUpload);
+		const { getByTestId } = render(FileUpload);
 
 		// Act
-		const input = getByLabelText('Sube tu fichero') as HTMLInputElement;
+		const button = getByTestId('file-button').querySelector(
+			'input[type="file"]'
+		) as HTMLInputElement;
+		expect(button).toBeInTheDocument();
 		const file = new File(['invalid content'], 'invalid.zip', { type: 'application/zip' });
 
 		// Trigger file input change event
-		await fireEvent.change(input, { target: { files: [file] } });
+		await fireEvent.change(button, { target: { files: [file] } });
 
 		// Assert
 		expect(loadFollowersFile).toHaveBeenCalledWith(file);

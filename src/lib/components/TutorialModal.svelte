@@ -1,34 +1,20 @@
 <script lang="ts">
-	export let showModal: boolean;
-	export let onClose: () => void;
+	import type { SvelteComponent } from 'svelte';
+	import { getModalStore } from '@skeletonlabs/skeleton';
 
-	const handleClose = () => {
-		onClose();
-	};
+	export let parent: SvelteComponent;
+
+	const modalStore = getModalStore();
 </script>
 
-<div class={`modal ${showModal ? 'is-active' : ''}`}>
-	<div class="modal-background" on:click={handleClose}></div>
-	<div class="modal-card">
-		<header class="modal-card-head">
-			<p class="modal-card-title is-bold">Pasos a seguir</p>
-		</header>
-		<section class="modal-card-body">
-			<div class="content">
-				<h1>Hello World</h1>
-				<p>
-					Lorem ipsum<sup><a>[1]</a></sup> dolor sit amet, consectetur adipiscing elit. Nulla
-					accumsan, metus ultrices eleifend gravida, nulla nunc varius lectus, nec rutrum justo nibh
-					eu lectus. Ut vulputate semper dui. Fusce erat odio, sollicitudin vel erat vel, interdum
-					mattis neque. Sub<sub>script</sub>
-					works as well!
-				</p>
-			</div>
-		</section>
-		<footer class="modal-card-foot">
-			<div class="buttons">
-				<button class="button is-success" on:click={handleClose}>OK</button>
-			</div>
+{#if $modalStore[0]}
+	<div class="card p-4 w-modal shadow-xl space-y-4">
+		<header class="text-2xl font-bold">Cómo usar</header>
+		<article>Cómo utilizar</article>
+
+		<footer class="modal-footer {parent.regionFooter}">
+			<button class="btn {parent.buttonNeutral}" on:click={parent.onClose}>Atrás</button>
+			<button class="btn {parent.buttonPositive}" on:click={() => {}}>Siguiente</button>
 		</footer>
 	</div>
-</div>
+{/if}

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { User } from '$lib/shared/User';
 	import UserCard from '$lib/components/UserCard.svelte';
+	import { TabGroup, Tab, TabAnchor } from '@skeletonlabs/skeleton';
 
 	let activeTab = 'followingThatDontFollowYou';
 
@@ -31,7 +32,33 @@
 	};
 </script>
 
-<div class="tabs is-toggle is-fullwidth">
+<TabGroup
+	justify="justify-center"
+	active="variant-filled-primary"
+	hover="hover:variant-soft-primary"
+	flex="flex-auto lg:flex-none"
+	rounded="rounded-container-token"
+	border=""
+	class="bg-surface-100-800-token w-full"
+>
+	{#each tabs as { id, label, icon }}
+		<TabAnchor
+			href="#"
+			selected={activeTab === id}
+			on:click={() => setActiveTab(id)}
+			data-testid={id}
+		>
+			<svelte:fragment slot="lead">
+				<span class="icon is-small">
+					<i class={icon} aria-hidden="true"></i>
+				</span>
+			</svelte:fragment>
+			<span>{label}</span>
+		</TabAnchor>
+	{/each}
+</TabGroup>
+
+<!-- <div class="tabs is-toggle is-fullwidth">
 	<ul>
 		{#each tabs as { id, label, icon }}
 			<li class={activeTab === id ? 'is-active' : ''}>
@@ -44,9 +71,9 @@
 			</li>
 		{/each}
 	</ul>
-</div>
+</div> -->
 
-<div class="card-container">
+<div>
 	{#if activeTab === 'followingThatDontFollowYou'}
 		{#each followingThatDontFollowYou as user}
 			<UserCard {user} />

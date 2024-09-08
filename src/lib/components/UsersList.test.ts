@@ -31,11 +31,15 @@ describe('UsersList Component', () => {
 	});
 
 	it('should render following that do not follow you', async () => {
-		const { getByText, queryByText } = render(UsersList, {
+		const { getByText, queryByText, getAllByTestId } = render(UsersList, {
 			props: { followers, following }
 		});
 
-		const followingThatDontFollowYou = screen.getByTestId('followingThatDontFollowYou');
+		const tabAnchors = getAllByTestId('tab-anchor');
+		expect(tabAnchors).toHaveLength(2);
+
+		const followingThatDontFollowYou = tabAnchors[0];
+		expect(followingThatDontFollowYou).toBeInTheDocument();
 		await fireEvent.click(followingThatDontFollowYou);
 
 		expect(getByText(/doesntFollowYou/i)).toBeInTheDocument();
@@ -44,11 +48,16 @@ describe('UsersList Component', () => {
 	});
 
 	it('should render followers that you do not follow', async () => {
-		const { getByText, queryByText } = render(UsersList, {
+		const { getByText, queryByText, getAllByTestId } = render(UsersList, {
 			props: { followers, following }
 		});
-		const followersThatYouDontFollow = screen.getByTestId('followersThatYouDontFollow');
-		await fireEvent.click(followersThatYouDontFollow);
+
+		const tabAnchors = getAllByTestId('tab-anchor');
+		expect(tabAnchors).toHaveLength(2);
+
+		const followingThatDontFollowYou = tabAnchors[1];
+		expect(followingThatDontFollowYou).toBeInTheDocument();
+		await fireEvent.click(followingThatDontFollowYou);
 
 		expect(getByText(/youDontFollow/i)).toBeInTheDocument();
 		expect(queryByText(/doesntFollowYou/i)).toBeNull();

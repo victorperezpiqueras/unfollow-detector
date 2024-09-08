@@ -9,15 +9,11 @@
 </script>
 
 <a href={finalHref} target="_blank" rel="noopener noreferrer">
-	<div class="card mb-4">
-		<header class="card-header">
-			<p class="card-header-title is-size-5">
-				<span class="icon mr-2 ig-icon">
-					<i class="fab fa-instagram"></i>
-				</span>
-				<span>@{user.value}</span>
-			</p>
-		</header>
+	<div class="card mt-4">
+		<div class="p-3 flex gap-3">
+			<i class="fab fa-instagram ig-icon text-xl"></i>
+			<span>@{user.value}</span>
+		</div>
 	</div>
 </a>
 

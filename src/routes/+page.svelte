@@ -6,6 +6,7 @@
 	import UsersList from '$lib/components/UsersList.svelte';
 	import { AppBar } from '@skeletonlabs/skeleton';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
+	import TutorialModalButton from '$lib/components/TutorialModalButton.svelte';
 	/* MODAL LOGIC */
 	let showModal = false;
 	const toggleModal = () => {
@@ -44,9 +45,7 @@
 
 <AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
 	<svelte:fragment slot="lead">
-		<a href="https://github.com/unfollow-detector/unfollow-detector">
-			<span class="fa-solid fa-circle-question is-size-2"></span>
-		</a>
+		<TutorialModalButton />
 	</svelte:fragment>
 	<h1 class="h1">Unfollow Detector</h1>
 	<svelte:fragment slot="trail"><LightSwitch /></svelte:fragment>
@@ -58,9 +57,9 @@
 	<FileUpload on:uploadComplete={handleUploadComplete} />
 
 	{#if followers != null && following != null}
-		<section class="m-6" data-testid="users-list">
+		<div class="w-4/5" data-testid="users-list">
 			<UsersList {followers} {following} />
-		</section>
+		</div>
 	{/if}
 </div>
 
@@ -73,6 +72,6 @@
 	</div>
 </section> -->
 
-<TutorialModal {showModal} onClose={handleCloseModal} />
-
+<!-- <TutorialModal onClose={handleCloseModal} />
+ -->
 <!-- <Footer /> -->
