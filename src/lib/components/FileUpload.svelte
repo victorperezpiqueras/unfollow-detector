@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { FollowersFileWrongFormatError, loadFollowersFile } from '$lib/shared/loadFollowersFile';
 	import { createEventDispatcher } from 'svelte';
-
+	import { FileButton } from '@skeletonlabs/skeleton';
 	const dispatch = createEventDispatcher();
 
 	const handleFileChange = async (event: Event) => {
@@ -17,7 +17,7 @@
 	};
 </script>
 
-<div class="file is-centered is-boxed is-link has-name" data-testid="upload-button">
+<!-- <div class="file is-centered is-boxed is-link has-name" data-testid="upload-button">
 	<label class="file-label">
 		<input
 			class="file-input"
@@ -37,4 +37,9 @@
 			</span>
 		</span>
 	</label>
-</div>
+</div> -->
+
+<FileButton name="files" button="btn variant-soft-tertiary" on:change={handleFileChange}>
+	<i class="fa-solid fa-upload"></i>
+	<span> Sube tu fichero </span>
+</FileButton>

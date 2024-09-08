@@ -4,7 +4,8 @@
 	import TutorialModal from '$lib/components/TutorialModal.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import UsersList from '$lib/components/UsersList.svelte';
-
+	import { AppBar } from '@skeletonlabs/skeleton';
+	import { LightSwitch } from '@skeletonlabs/skeleton';
 	/* MODAL LOGIC */
 	let showModal = false;
 	const toggleModal = () => {
@@ -23,7 +24,7 @@
 	}
 </script>
 
-<section class="hero is-medium is-bold">
+<!-- <section class="hero is-medium is-bold">
 	<div class="hero-body">
 		<div class="container has-text-centered">
 			<h1 class="title">
@@ -39,22 +40,39 @@
 			<h4 class="text">Encuentra quién no te sigue, sin dar tu cuenta a nadie.</h4>
 		</div>
 	</div>
-</section>
+</section> -->
 
-<section class="hero is-small is-bold">
+<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
+	<svelte:fragment slot="lead">
+		<a href="https://github.com/unfollow-detector/unfollow-detector">
+			<span class="fa-solid fa-circle-question is-size-2"></span>
+		</a>
+	</svelte:fragment>
+	<h1 class="h1">Unfollow Detector</h1>
+	<svelte:fragment slot="trail"><LightSwitch /></svelte:fragment>
+</AppBar>
+
+<div class="flex flex-col justify-start items-center h-screen p-4 gap-4">
+	<h4 class="h4">Encuentra quién no te sigue, sin dar tu cuenta a nadie.</h4>
+
+	<FileUpload on:uploadComplete={handleUploadComplete} />
+
+	{#if followers != null && following != null}
+		<section class="m-6" data-testid="users-list">
+			<UsersList {followers} {following} />
+		</section>
+	{/if}
+</div>
+
+<!-- <section class="hero is-small is-bold">
 	<div class="hero-body">
 		<div class="container has-text-centered">
 			<FileUpload on:uploadComplete={handleUploadComplete} />
 		</div>
 		<div class="button-row"></div>
 	</div>
-</section>
+</section> -->
 
-{#if followers != null && following != null}
-	<section class="m-6" data-testid="users-list">
-		<UsersList {followers} {following} />
-	</section>
-{/if}
 <TutorialModal {showModal} onClose={handleCloseModal} />
 
-<Footer />
+<!-- <Footer /> -->
