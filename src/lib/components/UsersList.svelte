@@ -20,8 +20,6 @@
 
 	export let followers: User[] = [{ href: '', timestamp: 0, value: 'usuario' }];
 	export let following: User[] = [{ href: '', timestamp: 0, value: 'usuario2' }];
-	/* export let following: User[] = Array(10).fill({ href: '', timestamp: 0, value: 'usuario2' });
-	export let followers: User[] = Array(10).fill({ href: '', timestamp: 0, value: 'usuario' }); */
 
 	const followersSet = new Set(followers.map((user) => user.value));
 	const followingSet = new Set(following.map((user) => user.value));
@@ -34,7 +32,7 @@
 	};
 </script>
 
-<div class="flex flex-col justify-center items-center h-full">
+<div class="flex flex-col justify-center items-center h-full w-full">
 	<TabGroup
 		justify="justify-center"
 		active="variant-filled-primary"
@@ -61,7 +59,7 @@
 		{/each}
 	</TabGroup>
 
-	<div class="overflow-y-auto w-full max-w-2xl h-xl">
+	<div class="overflow-y-auto w-full max-w-lg h-xl md:h-full mt-4">
 		{#if activeTab === 'followingThatDontFollowYou'}
 			{#each followingThatDontFollowYou as user}
 				<UserCard {user} />

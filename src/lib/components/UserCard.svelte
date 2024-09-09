@@ -9,7 +9,7 @@
 </script>
 
 <a href={finalHref} target="_blank" rel="noopener noreferrer">
-	<div class="card mt-4">
+	<div class="card mb-3">
 		<div class="p-3 flex gap-3">
 			<i class="fab fa-instagram ig-icon text-xl"></i>
 			<span>@{user.value}</span>
