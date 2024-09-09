@@ -10,10 +10,6 @@ async function uploadFile(page: Page, filePath: string) {
 	await page.locator('input[type="file"]').setInputFiles(filePath);
 }
 
-async function clickByTestId(page: Page, testId: string) {
-	await page.getByTestId(testId).click();
-}
-
 test.describe('File upload and UsersList display', () => {
 	test('should upload a file and display initial user data', async ({ page }) => {
 		await page.goto('/');
@@ -79,12 +75,53 @@ test.describe('File upload and UsersList display', () => {
 
 		await uploadFile(page, './e2e/fixtures/instagram_invalid_exported_data.zip');
 
-		// Listen for the dialog (alert) and handle it
-		const dialog = await page.waitForEvent('dialog');
+		// Listen for the dialog (toast) and handle it
+		await expect(page.getByTestId('toast')).toContainText(
+			'El fichero no tiene el formato correcto. Revisa las instrucciones en el botón de ayuda.'
+		);
+	});
 
-		// Assert the alert's message
-		expect(dialog.message()).toBe('El fichero no tiene el formato correcto. Revisa su estructura.');
+	test('should popup tutorial modal steps correctly', async ({ page }) => {
+		await page.goto('/');
 
-		await dialog.accept();
+		await page.getByRole('button', { name: '?' }).click();
+
+		await expect(page.getByTestId('modal-component').locator('span')).toContainText('Paso 1/10');
+		await expect(page.getByTestId('modal-component').getByRole('contentinfo')).toContainText(
+			'Cerrar'
+		);
+		await expect(page.getByTestId('modal-component').getByRole('contentinfo')).not.toContainText(
+			'Atrás'
+		);
+
+		await expect(page.getByTestId('modal-component').getByRole('contentinfo')).toContainText(
+			'Siguiente'
+		);
+		await expect(page.getByTestId('modal-component').getByRole('contentinfo')).not.toContainText(
+			'Finalizar'
+		);
+		// TODO test image loaded
+		await page.getByRole('button', { name: 'Siguiente' }).click();
+		// TODO test image changed
+
+		await page.getByRole('button', { name: 'Siguiente' }).click({
+			clickCount: 8
+		});
+
+		await expect(page.getByTestId('modal-component').locator('span')).toContainText('Paso 10/10');
+
+		await expect(page.getByTestId('modal-component').getByRole('contentinfo')).not.toContainText(
+			'Cerrar'
+		);
+		await expect(page.getByTestId('modal-component').getByRole('contentinfo')).toContainText(
+			'Atrás'
+		);
+
+		await expect(page.getByTestId('modal-component').getByRole('contentinfo')).not.toContainText(
+			'Siguiente'
+		);
+		await expect(page.getByTestId('modal-component').getByRole('contentinfo')).toContainText(
+			'Finalizar'
+		);
 	});
 });

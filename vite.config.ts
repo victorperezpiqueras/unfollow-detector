@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitest/config';
 import { sveltekit } from '@sveltejs/kit/vite';
-import { resolve } from 'path';
+import path, { resolve } from 'path';
 
 export default defineConfig({
 	plugins: [sveltekit()],
@@ -16,7 +16,7 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			$lib: resolve(__dirname, 'src/lib') // Alias for $lib
+			$lib: resolve(__dirname, 'src/lib')
 		}
 	}
 });

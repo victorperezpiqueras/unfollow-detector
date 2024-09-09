@@ -2,12 +2,27 @@ import { render, fireEvent } from '@testing-library/svelte';
 import FileUpload from './FileUpload.svelte';
 import { loadFollowersFile, FollowersFileWrongFormatError } from '$lib/shared/loadFollowersFile';
 import { type User } from '$lib/shared/User';
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 // Mock the loadFollowersFile function
 vi.mock('$lib/shared/loadFollowersFile');
 
+const mockTrigger = vi.fn();
+vi.mock('@skeletonlabs/skeleton', async (importOriginal) => {
+	const original: any = await importOriginal();
+	return {
+		...original,
+		getToastStore: () => ({
+			trigger: mockTrigger
+		})
+	};
+});
+
 describe('FileUpload Component', () => {
+	beforeEach(() => {
+		mockTrigger.mockClear();
+	});
+
 	it('dispatches uploadComplete event with followers and following on successful file load', async () => {
 		// Arrange
 		const mockFollowers: User[] = [
@@ -59,9 +74,6 @@ describe('FileUpload Component', () => {
 			throw new FollowersFileWrongFormatError(mockErrorMessage);
 		});
 
-		// Mock window.alert
-		const alertMock = vi.spyOn(window, 'alert').mockImplementation((data) => {});
-
 		// Render the component
 		const { getByTestId } = render(FileUpload);
 
@@ -77,11 +89,12 @@ describe('FileUpload Component', () => {
 
 		// Assert
 		expect(loadFollowersFile).toHaveBeenCalledWith(file);
-		expect(alertMock).toBeCalledWith(
-			'El fichero no tiene el formato correcto. Revisa su estructura.'
-		); // TODO check how to fix message
 
-		// Clean up the mock
-		alertMock.mockRestore();
+		expect(mockTrigger).toHaveBeenCalledWith({
+			message:
+				'El fichero no tiene el formato correcto. Revisa las instrucciones en el botón de ayuda.',
+			background: 'variant-filled-error',
+			timeout: 6000
+		});
 	});
 });
