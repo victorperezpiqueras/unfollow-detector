@@ -17,29 +17,11 @@
 	};
 </script>
 
-<!-- <div class="file is-centered is-boxed is-link has-name" data-testid="upload-button">
-	<label class="file-label">
-		<input
-			class="file-input"
-			type="file"
-			accept=".zip"
-			on:change={handleFileChange}
-			data-testid="file-input"
-		/>
-		<span class="file-cta">
-			<span class="file-icon">
-				<span class="has-text-white">
-					<i class="fa-solid fa-upload mr-2 is-size-4"></i>
-				</span>
-			</span>
-			<span class="file-label is-size-4 has-text-white is-family-sans-serif">
-				Sube tu fichero
-			</span>
-		</span>
-	</label>
-</div> -->
-
-<FileButton name="files" button="btn variant-soft-tertiary" on:change={handleFileChange}>
+<FileButton
+	name="files"
+	button="btn bg-gradient-to-br variant-gradient-primary-secondary"
+	on:change={handleFileChange}
+>
 	<i class="fa-solid fa-upload"></i>
 	<span>Sube tu fichero</span>
 </FileButton>

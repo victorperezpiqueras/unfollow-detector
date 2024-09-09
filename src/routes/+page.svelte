@@ -16,7 +16,7 @@
 	}
 </script>
 
-<div class="overflow-hidden">
+<div class="h-screen overflow-hidden">
 	<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
 		<svelte:fragment slot="lead">
 			<TutorialModalButton />
@@ -25,14 +25,14 @@
 		<svelte:fragment slot="trail"><LightSwitch /></svelte:fragment>
 	</AppBar>
 
-	<div class="flex flex-col h-screen">
+	<div class="flex flex-col h-full gap-4">
 		<div class="flex flex-col justify-start items-center gap-4 p-4 h-4/6">
 			<h4 class="text-lg font-semibold">Encuentra quién no te sigue, sin dar tu cuenta a nadie.</h4>
 
 			<FileUpload on:uploadComplete={handleUploadComplete} />
 
 			{#if followers != null && following != null}
-				<div class="w-4/5 flex-grow h-full">
+				<div class="w-4/5 md:w-3/5 flex-grow justify-center h-4/5">
 					<UsersList {followers} {following} />
 				</div>
 			{/if}
