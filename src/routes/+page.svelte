@@ -11,8 +11,6 @@
 	let followers: User[];
 	let following: User[];
 
-	following = Array(10).fill({ href: '', timestamp: 0, value: 'usuario2' });
-	followers = Array(10).fill({ href: '', timestamp: 0, value: 'usuario' });
 	function handleUploadComplete(event: CustomEvent<{ followers: User[]; following: User[] }>) {
 		followers = event.detail.followers;
 		following = event.detail.following;

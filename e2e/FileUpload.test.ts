@@ -6,7 +6,7 @@ import { Page } from '@playwright/test';
 const INSTAGRAM_EXPORTED_DATA = './e2e/fixtures/instagram_exported_data.zip';
 
 async function uploadFile(page: Page, filePath: string) {
-	await page.locator('[data-testid="file-button"]').click();
+	await page.locator('[data-testid="file-dropzone"]').click();
 	await page.locator('input[type="file"]').setInputFiles(filePath);
 }
 

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { FollowersFileWrongFormatError, loadFollowersFile } from '$lib/shared/loadFollowersFile';
 	import { createEventDispatcher } from 'svelte';
-	import { FileButton, FileDropzone } from '@skeletonlabs/skeleton';
+	import { FileDropzone } from '@skeletonlabs/skeleton';
 	const dispatch = createEventDispatcher();
 
 	const handleFileChange = async (event: Event) => {
@@ -17,15 +17,7 @@
 	};
 </script>
 
-<!-- <FileButton
-	name="files"
-	button="btn bg-gradient-to-br variant-gradient-primary-secondary"
-	on:change={handleFileChange}
->
-	<i class="fa-solid fa-upload"></i>
-	<span>Sube tu fichero</span>
-</FileButton> -->
-<FileDropzone name="files" padding="p-2 py-2">
+<FileDropzone name="files" padding="p-2 py-2" on:change={handleFileChange}>
 	<svelte:fragment slot="lead"><i class="fa-solid fa-file-arrow-up text-3xl"></i></svelte:fragment>
 	<svelte:fragment slot="message">Sube tu fichero</svelte:fragment>
 	<svelte:fragment slot="meta">Formato ZIP</svelte:fragment>

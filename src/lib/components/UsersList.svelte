@@ -59,7 +59,7 @@
 		{/each}
 	</TabGroup>
 
-	<div class="overflow-y-auto w-full max-w-lg h-xl md:h-full mt-4">
+	<div class="overflow-y-auto w-full max-w-lg h-xl md:h-full mt-4" data-testid="users-list">
 		{#if activeTab === 'followingThatDontFollowYou'}
 			{#each followingThatDontFollowYou as user}
 				<UserCard {user} />

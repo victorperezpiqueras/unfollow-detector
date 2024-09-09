@@ -33,7 +33,7 @@ describe('FileUpload Component', () => {
 		component.$on('uploadComplete', uploadComplete);
 
 		// Act
-		const button = getByTestId('file-button').querySelector(
+		const button = getByTestId('file-dropzone').querySelector(
 			'input[type="file"]'
 		) as HTMLInputElement;
 		expect(button).toBeInTheDocument();
@@ -66,7 +66,7 @@ describe('FileUpload Component', () => {
 		const { getByTestId } = render(FileUpload);
 
 		// Act
-		const button = getByTestId('file-button').querySelector(
+		const button = getByTestId('file-dropzone').querySelector(
 			'input[type="file"]'
 		) as HTMLInputElement;
 		expect(button).toBeInTheDocument();
