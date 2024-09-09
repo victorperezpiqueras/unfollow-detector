@@ -20,16 +20,21 @@
 </script>
 
 <div class="h-screen overflow-hidden">
-	<AppBar gridColumns="grid-cols-3" slotDefault="place-self-center" slotTrail="place-content-end">
+	<AppBar
+		background="bg-primary-active-token"
+		gridColumns="grid-cols-3"
+		slotDefault="place-self-center"
+		slotTrail="place-content-end"
+	>
 		<svelte:fragment slot="lead">
 			<TutorialModalButton />
 		</svelte:fragment>
-		<h1 class="h1 font-sans">Unfollow Detector</h1>
+		<h1 class="h2 md:h1 font-sans whitespace-nowrap">Unfollow Detector</h1>
 		<svelte:fragment slot="trail"><LightSwitch /></svelte:fragment>
 	</AppBar>
 
-	<div class="flex flex-col h-full">
-		<div class="flex flex-col justify-start w-100 items-center gap-4 p-4 pb-2 h-3/4 md:h-8/12">
+	<div class="flex flex-col h-full gap-4">
+		<div class="flex flex-col justify-start w-100 items-center gap-4 p-4 pb-2 h-3/4 md:h-4/5">
 			<h4 class="text-lg font-semibold">Encuentra quién no te sigue, sin dar tu cuenta a nadie.</h4>
 
 			<div class="flex h-1/5 md:h-1/10 w-4/5 md:w-2/5">
@@ -37,7 +42,7 @@
 			</div>
 
 			{#if followers != null && following != null}
-				<div class="w-4/5 md:w-3/5 flex justify-center h-4/6 md:h-2/3">
+				<div class="w-4/5 md:w-3/5 flex justify-center h-2/3 md:h-3/4">
 					<UsersList {followers} {following} />
 				</div>
 			{/if}
