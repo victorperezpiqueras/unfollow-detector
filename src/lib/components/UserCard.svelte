@@ -9,10 +9,10 @@
 </script>
 
 <a href={finalHref} target="_blank" rel="noopener noreferrer">
-	<div class="card card-hover mb-3">
-		<div class="p-3 flex gap-3">
+	<div class="card card-hover mb-3 w-full">
+		<div class="p-3 flex gap-3 justify-start items-center">
 			<i class="fab fa-instagram ig-icon text-xl"></i>
-			<span>@{user.value}</span>
+			<span class="truncate">@{user.value}</span>
 		</div>
 	</div>
 </a>

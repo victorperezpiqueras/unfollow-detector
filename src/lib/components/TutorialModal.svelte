@@ -10,11 +10,11 @@
 	const dataSteps = [
 		{
 			image: '1',
-			text: 'Ve a tu perfil de Instagram y abre los ajustes > Centro de cuentas.'
+			text: 'Ve a tu perfil de Instagram y abre los ajustes > "Centro de cuentas".'
 		},
 		{
 			image: '2',
-			text: 'Pincha en Configuración de la cuenta > Tu información y tus permisos.'
+			text: 'Pincha en "Configuración de la cuenta" > "Tu información y tus permisos".'
 		},
 		{
 			image: '3',
@@ -26,7 +26,7 @@
 		},
 		{
 			image: '5',
-			text: 'Selecciona tu cuenta de Instagram y dale a Siguiente.'
+			text: 'Selecciona tu cuenta de Instagram y dale a "Siguiente".'
 		},
 		{
 			image: '6',
@@ -34,19 +34,23 @@
 		},
 		{
 			image: '7',
-			text: 'Busca la sección "Conexiones" y marca "Seguidores y seguidos", y dale a Siguiente.'
+			text: 'Busca la sección "Conexiones" y marca "Seguidores y seguidos", y dale a "Siguiente".'
 		},
 		{
 			image: '8',
-			text: 'Elige "Descargar en el dispositivo" y dale a Siguiente.'
+			text: 'Elige "Descargar en el dispositivo" y dale a "Siguiente".'
 		},
 		{
 			image: '9',
-			text: 'En "Intervalo de fechas", elige "Desde el principio", y en "Formato" elige "JSON". Por último, dale a "Crear archivos.'
+			text: 'En "Intervalo de fechas", elige "Desde el principio", y en "Formato" elige "JSON". Por último, dale a "Crear archivos".'
 		},
 		{
-			image: '10', // TODO to be created
-			text: 'Tras esperar unos minutos, podrás descargar el fichero desde Instagram, y cargarlo en Unfollow Detector para poder ver quién te ha dejado de seguir.'
+			image: '10',
+			text: 'La descarga puede tardar un tiempo (te avisan a tu correo cuando esté lista). Entonces podrás descargar el fichero desde Instagram en el mismo menú de "Descargar tu información".'
+		},
+		{
+			image: '11',
+			text: 'Cárgalo en Unfollow Detector para poder ver quién te ha dejado de seguir. Nosotros no enviamos tus datos a ningún sitio (puedes comprobarlo), y es la forma más segura de ver quién te sigue sin darle acceso a tu cuenta a nadie.'
 		}
 	];
 

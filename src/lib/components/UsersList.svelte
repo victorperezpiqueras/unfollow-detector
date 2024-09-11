@@ -18,21 +18,34 @@
 		}
 	];
 
-	export let followers: User[] = [{ href: '', timestamp: 0, value: 'usuario' }];
-	export let following: User[] = [{ href: '', timestamp: 0, value: 'usuario2' }];
+	export let followers: User[] | null = [];
+	export let following: User[] | null = [];
 
-	const followersSet = new Set(followers.map((user) => user.value));
-	const followingSet = new Set(following.map((user) => user.value));
+	const followersArray = followers ?? [];
+	const followingArray = following ?? [];
 
-	const followersThatYouDontFollow = followers.filter((user) => !followingSet.has(user.value));
-	const followingThatDontFollowYou = following.filter((user) => !followersSet.has(user.value));
+	const followersSet = new Set(followersArray.map((user) => user.value));
+	const followingSet = new Set(followingArray.map((user) => user.value));
+
+	const followersThatYouDontFollow = followersArray.filter((user) => !followingSet.has(user.value));
+	const followingThatDontFollowYou = followingArray.filter((user) => !followersSet.has(user.value));
 
 	const setActiveTab = (tabId: string) => {
 		activeTab = tabId;
 	};
+
+	function getBadgeNumber(id: string) {
+		return id === 'followingThatDontFollowYou'
+			? followingThatDontFollowYou.length
+			: followersThatYouDontFollow.length;
+	}
+
+	function getColorClass(id: string) {
+		return id === 'followingThatDontFollowYou' ? 'bg-error-700' : 'bg-success-500';
+	}
 </script>
 
-<div class="flex flex-col justify-center items-center h-full w-full">
+<div class="flex flex-col justify-start items-center h-full w-full">
 	<TabGroup
 		justify="justify-center"
 		active="variant-filled-primary"
@@ -50,9 +63,14 @@
 				data-testid={id}
 			>
 				<svelte:fragment slot="lead">
-					<span class="icon is-small">
-						<i class={icon} aria-hidden="true"></i>
-					</span>
+					<div class="flex flex-row justify-center gap-2">
+						<span class="icon is-small">
+							<i class={icon} aria-hidden="true"></i>
+						</span>
+						<span class={`badge-icon ${getColorClass(id)}`}>
+							{getBadgeNumber(id)}
+						</span>
+					</div>
 				</svelte:fragment>
 				<span>{label}</span>
 			</TabAnchor>
@@ -60,7 +78,7 @@
 	</TabGroup>
 
 	<div
-		class="overflow-x-hidden overflow-y-auto w-full max-w-lg h-xl md:h-full mt-4 pl-4 pr-4"
+		class="overflow-x-hidden overflow-y-auto w-full max-w-lg h-xl md:h-full mt-4 pl-2 pr-2"
 		data-testid="users-list"
 	>
 		{#if activeTab === 'followingThatDontFollowYou'}

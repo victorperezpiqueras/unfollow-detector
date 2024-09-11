@@ -84,9 +84,9 @@ test.describe('File upload and UsersList display', () => {
 	test('should popup tutorial modal steps correctly', async ({ page }) => {
 		await page.goto('/');
 
-		await page.getByRole('button', { name: '?' }).click();
+		await page.getByRole('button', { name: 'Guía de uso' }).click();
 
-		await expect(page.getByTestId('modal-component').locator('span')).toContainText('Paso 1/10');
+		await expect(page.getByTestId('modal-component').locator('span')).toContainText('Paso 1/11');
 		await expect(page.getByTestId('modal-component').getByRole('contentinfo')).toContainText(
 			'Cerrar'
 		);
@@ -107,8 +107,9 @@ test.describe('File upload and UsersList display', () => {
 		await page.getByRole('button', { name: 'Siguiente' }).click({
 			clickCount: 8
 		});
+		await page.getByRole('button', { name: 'Siguiente' }).click();
 
-		await expect(page.getByTestId('modal-component').locator('span')).toContainText('Paso 10/10');
+		await expect(page.getByTestId('modal-component').locator('span')).toContainText('Paso 11/11');
 
 		await expect(page.getByTestId('modal-component').getByRole('contentinfo')).not.toContainText(
 			'Cerrar'
@@ -124,4 +125,5 @@ test.describe('File upload and UsersList display', () => {
 			'Finalizar'
 		);
 	});
+	// TODO test buttons appear when they have to
 });

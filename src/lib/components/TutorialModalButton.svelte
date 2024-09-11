@@ -15,8 +15,9 @@
 
 <button
 	type="button"
-	class="btn-icon btn-icon-sm variant-filled-surface"
+	class="btn btn-sm variant-filled-primary"
 	on:click={() => modalStore.trigger(modal)}
 >
-	<span class="fa-solid fa-question text-2xl"></span>
+	<span class="fa-solid fa-question text-xl"></span>
+	<span>Guía de uso</span>
 </button>

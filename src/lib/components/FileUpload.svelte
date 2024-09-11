@@ -28,6 +28,6 @@
 
 <FileDropzone name="files" padding="p-2 py-2" on:change={handleFileChange}>
 	<svelte:fragment slot="lead"><i class="fa-solid fa-file-arrow-up text-3xl"></i></svelte:fragment>
-	<svelte:fragment slot="message">Sube tu fichero</svelte:fragment>
+	<svelte:fragment slot="message">Carga tu fichero de Instagram</svelte:fragment>
 	<svelte:fragment slot="meta">Formato ZIP</svelte:fragment>
 </FileDropzone>
