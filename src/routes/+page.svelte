@@ -36,7 +36,9 @@
 		<svelte:fragment slot="lead">
 			<span class="text-3xl">🔎</span>
 		</svelte:fragment>
-		<h1 class="h2 md:h1 whitespace-nowrap tracking-tight font-mono font-bold">Unfollow Detector</h1>
+		<h1 class="h2 font-mono font-bold md:h1 md:font-mono whitespace-nowrap tracking-tight">
+			Unfollow Detector
+		</h1>
 		<svelte:fragment slot="trail"><LightSwitch /></svelte:fragment>
 	</AppBar>
 
@@ -49,10 +51,10 @@
 				</div>
 			{:else}
 				<div class="flex flex-col card text-md p-4 w-full md:w-1/3 gap-2">
-					<h4>
+					<h4 class="text-center">
 						<span>Descubre quién no te sigue de vuelta de forma </span>
 						<span class="font-semibold">segura y rápida⚡</span>
-						<br />
+						<div class="m-2"></div>
 						<span>No necesitas ingresar tus credenciales: simple, fácil y </span>
 						<span class="font-semibold">100% seguro🛡️</span>
 					</h4>

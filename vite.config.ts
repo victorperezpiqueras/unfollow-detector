@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitest/config';
 import { sveltekit } from '@sveltejs/kit/vite';
-import path, { resolve } from 'path';
+import { resolve } from 'path';
 
 export default defineConfig({
 	plugins: [sveltekit()],
@@ -11,7 +11,15 @@ export default defineConfig({
 		globals: true,
 		environment: 'jsdom',
 		coverage: {
-			exclude: ['./src/setupTest.ts']
+			provider: 'v8',
+			reporter: ['text', 'json', 'html'],
+			exclude: [
+				'./src/setupTest.ts',
+				'./src/app.d.ts',
+				'./src/lib/index.ts',
+				'src/**/*.{test,spec}.{js,ts}'
+			],
+			include: ['src/**/*.{svelte,ts}']
 		}
 	},
 	resolve: {
