@@ -2,23 +2,11 @@
 
 [![CI/CD](https://github.com/unfollow-detector/unfollow-detector/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/unfollow-detector/unfollow-detector/actions/workflows/ci-cd.yml)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Application that provides a simple-to-use guide on how to download your Instagram followers and following information, where you can see which profiles that you follow dont follow you back, and vice versa.
 
-## Creating a project
+## How to start
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Install and debug
 
 ```bash
 npm run dev
@@ -27,7 +15,7 @@ npm run dev
 npm run dev -- --open
 ```
 
-## Building
+### Building
 
 To create a production version of your app:
 
@@ -37,4 +25,17 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+### Testing
+
+Unit tests can be run using `npm run test:unit`, and follow the pattern of `ComponentName.test.ts`, in the same folder as the source code.
+
+End-to-end tests are stored in `/e2e`. They are run using Playwright: `npm run test:e2e`.
+
+## Main dependencies
+
+- Language: TypeScript
+- Component library: [Svelte](https://svelte.dev/)
+- UI: [Skeleton](https://www.skeleton.dev/docs/get-started)
+- CSS: [Tailwind](https://tailwindcss.com/)
+- Dev env: [Vite](https://vitejs.dev/)
+- Testing framework: [Vitest](https://vitest.dev/)
