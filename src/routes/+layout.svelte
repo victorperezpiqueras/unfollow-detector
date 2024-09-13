@@ -5,6 +5,10 @@
 	initializeStores();
 </script>
 
+<svelte:head>
+	<title>Unfollow Detector</title>
+</svelte:head>
+
 <Modal />
 <Toast />
 <slot></slot>

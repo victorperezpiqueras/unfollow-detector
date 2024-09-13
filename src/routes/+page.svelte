@@ -7,6 +7,7 @@
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 	import TutorialModalButton from '$lib/components/TutorialModalButton.svelte';
 	import DeleteButton from '$lib/components/DeleteButton.svelte';
+	import favicon from '/src/assets/favicon.png';
 
 	let followers: User[] | null = null;
 	let following: User[] | null = null;
@@ -34,7 +35,9 @@
 		slotTrail="place-content-end"
 	>
 		<svelte:fragment slot="lead">
-			<span class="text-3xl">🔎</span>
+			<span class="text-3xl">
+				<img class="w-10 drop-shadow-xl border-2 rounded-xl" src={favicon} alt="logo" />
+			</span>
 		</svelte:fragment>
 		<h1 class="h2 font-mono font-bold md:h1 md:font-mono whitespace-nowrap tracking-tight">
 			Unfollow Detector
