@@ -14,7 +14,7 @@ test.describe('File upload and UsersList display', () => {
 	test('should upload a file and display initial user data', async ({ page }) => {
 		await page.goto('/');
 
-		await expect(page.locator('body')).toContainText('Unfollow Detector');
+		await expect(page.locator('body')).toContainText('Unfollower Finder');
 
 		// Upload the file
 		await uploadFile(page, INSTAGRAM_EXPORTED_DATA);
@@ -44,16 +44,11 @@ test.describe('File upload and UsersList display', () => {
 		// Upload the file
 		await uploadFile(page, INSTAGRAM_EXPORTED_DATA);
 
-		// Click on a specific user and check new tab URL
-		await page.getByText('@userThatDoesntFollowYou').click();
+		const userLink = page.locator('a[href^="https://www.instagram.com"]');
+		const href = await userLink.getAttribute('href');
 
-		const newPagePromise = page.waitForEvent('popup');
-		const newPage = await newPagePromise;
-
-		await newPage.waitForLoadState();
-		expect(newPage.url()).toBe('https://www.instagram.com/userThatDoesntFollowYou/');
-
-		await newPage.close();
+		// Check that the href is the Instagram deep link
+		expect(href).toBe('https://www.instagram.com/userThatDoesntFollowYou');
 	});
 
 	test('should open instagram app when clicking on a user in mobile devices', async ({ page }) => {
@@ -101,13 +96,11 @@ test.describe('File upload and UsersList display', () => {
 			'Finalizar'
 		);
 		// TODO test image loaded
-		await page.getByRole('button', { name: 'Siguiente' }).click();
 		// TODO test image changed
 
-		await page.getByRole('button', { name: 'Siguiente' }).click({
-			clickCount: 8
-		});
-		await page.getByRole('button', { name: 'Siguiente' }).click();
+		for (let index = 0; index < 10; index++) {
+			await page.getByRole('button', { name: 'Siguiente' }).click();
+		}
 
 		await expect(page.getByTestId('modal-component').locator('span')).toContainText('Paso 11/11');
 

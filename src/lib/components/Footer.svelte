@@ -2,11 +2,11 @@
 	<div class="container mx-auto text-center">
 		<p class="text-sm">
 			<a
-				href="https://github.com/unfollow-detector/unfollow-detector"
+				href="https://github.com/victorperezpiqueras/unfollower-finder"
 				class="hover:underline font-bold"
 			>
 				<span class="fab fa-github text-xl"></span>
-				<strong>UnfollowDetector</strong></a
+				<strong>Unfollower Finder</strong></a
 			>
 			by
 			<a

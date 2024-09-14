@@ -1,8 +1,8 @@
-# Unfollow Detector
+# Unfollower Finder
 
-[![CI/CD](https://github.com/unfollow-detector/unfollow-detector/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/unfollow-detector/unfollow-detector/actions/workflows/ci-cd.yml)
+[![CI/CD](https://github.com/victorperezpiqueras/unfollower-finder/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/victorperezpiqueras/unfollower-finder/actions/workflows/ci-cd.yml)
 
-Application that provides a simple-to-use guide on how to download your Instagram followers and following information, where you can see which profiles that you follow dont follow you back, and vice versa.
+Unfollower Finder allows you to see which Instagram profiles that you follow dont follow you back, and vice versa. The app does not require any user account information, and provides a simple guide on how to find your unfollowers, without asking, sending or storing any user information.
 
 ## How to start
 
@@ -17,7 +17,7 @@ npm run dev -- --open
 
 ### Building
 
-To create a production version of your app:
+To create a production version of the app:
 
 ```bash
 npm run build

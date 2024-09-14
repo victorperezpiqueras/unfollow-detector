@@ -40,7 +40,7 @@
 			</span>
 		</svelte:fragment>
 		<h1 class="h2 font-mono font-bold md:h1 md:font-mono whitespace-nowrap tracking-tight">
-			Unfollow Detector
+			Unfollower Finder
 		</h1>
 		<svelte:fragment slot="trail"><LightSwitch /></svelte:fragment>
 	</AppBar>

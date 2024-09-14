@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-	<title>Unfollow Detector</title>
+	<title>Unfollower Finder</title>
 </svelte:head>
 
 <Modal />

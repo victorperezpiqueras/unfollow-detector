@@ -50,7 +50,7 @@
 		},
 		{
 			image: '11',
-			text: 'Cárgalo en Unfollow Detector para poder ver quién te ha dejado de seguir. Nosotros no enviamos tus datos a ningún sitio (puedes comprobarlo), y es la forma más segura de ver quién te sigue sin darle acceso a tu cuenta a nadie.'
+			text: 'Cárgalo en Unfollower Finder para poder ver quién te ha dejado de seguir. Nosotros no enviamos tus datos a ningún sitio (puedes comprobarlo), y es la forma más segura de ver quién te sigue sin darle acceso a tu cuenta a nadie.'
 		}
 	];
 

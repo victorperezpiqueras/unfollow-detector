@@ -17,7 +17,7 @@ const config = {
 			fallback: null
 		}),
 		paths: {
-			base: '/unfollow-detector'
+			base: '/unfollower-finder'
 		}
 	}
 };
