@@ -8,12 +8,12 @@
 	const tabs = [
 		{
 			id: 'followingThatDontFollowYou',
-			label: 'No te siguen',
+			label: 'Unfollowers',
 			icon: 'fas fa-thumbs-down'
 		},
 		{
 			id: 'followersThatYouDontFollow',
-			label: 'No les sigues',
+			label: 'Fans',
 			icon: 'fas fa-thumbs-up'
 		}
 	];

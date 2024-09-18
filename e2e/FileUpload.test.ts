@@ -31,7 +31,7 @@ test.describe('File upload and UsersList display', () => {
 		await uploadFile(page, INSTAGRAM_EXPORTED_DATA);
 
 		// Click on followers who don’t follow back
-		await page.getByRole('button', { name: 'No les sigues' }).click();
+		await page.getByRole('button', { name: 'Fans' }).click();
 
 		// Verify displayed users
 		await expect(page.getByTestId('users-list')).not.toContainText('@userMutual');
